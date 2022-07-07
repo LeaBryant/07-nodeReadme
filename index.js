@@ -2,8 +2,15 @@
 const fs = require('fs');
 const path = require('path');
 const inquirer = require('inquirer');
-const generateMarkdown = require('./utils/generateMarkdown');
-const Choices = require('inquirer/lib/objects/choices');
+const generateMarkdown = require('./utils/generateMarkdown')
+
+const validation = (input) => {
+    if (input !== '') {
+        return true;
+    }
+    return 'Please enter a response'
+}
+
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -18,52 +25,53 @@ const questions = [
     message: 'Include licenses:',
     choices: ['MIT','MOZILLA_PUBLIC_LICENSE_2.0','APACHE','N/A']
 },
-  
-  {
-      type: 'input',
-      name: 'description',
-      message: 'Enter a description of your project:'
-  },
-  {
+{
     type: 'input',
-    name: 'motavation',
-    message: 'What was your motivation?',
-  },
+    name: 'description',
+    message: 'Enter a description of your project:'
+},
+{
+    type: "input",
+    message: "Instructions on usage:",
+    name: "usage",
+},
+{
+    type: "input",
+    message: "Test instructions:",
+    name: "testing",
+    validate: (input) => {
+        if (input !== '') {
+            return true;
+        }
+        return 'Please enter a response'
+    }
+},
   {
-    type: 'input',
-    name: 'motavation',
-    message: 'What was your motivation?',
-  },
+    type: "input",
+    message: "Include step-by-step installation instructions:",
+    name: "installation",
+},
+{
+    type: "input",
+    message: "Link to deployed application:",
+    name: "deployed",
+},
+{
+    type: "input",
+    message: "Describe how users can contribute:",
+    name: "contribution",
+},
   {
-      type: 'input',
-      name: 'install',
-      message: 'How to install:',
-  },
-  {
-      type: 'input',
-      name: 'usage',
-      message: 'Enter the information on how to use this project:'
-  },
-  {
-      type: 'input',
-      name: 'guidelines',
-      message: 'Enter the contribution guidelines:'
-  },
-  {
-      type: 'input',
-      name: 'test',
-      message: 'Enter the test instructions:',
-  },
-  {
-      type: 'input',
-      message: 'Enter your github username:',
-      name: 'username'
-  },
-  {
-      type: 'input',
-      message: 'Enter your email address:',
-      name: 'email',
-  }
+    type: "input",
+    message: "Github Username:",
+    name: "username",
+},
+{
+    type: "input",
+    message: "Email:",
+    name: "email",
+},
+
 ];
 
 // TODO: Create a function to write README file
@@ -73,11 +81,12 @@ function writeToFile(fileName, data) {
 // research fs, path and the ... spread operator 
 
 // TODO: Create a function to initialize app
-function init(fileName, data) {
-    inquirer.prompt(questions).then((answers) => {
-        writeToFile('NEWREADME.md', generateMarkdown({...answers}))
-    })
 
+function init() {
+    inquirer
+        .prompt(questions).then((response) => {
+            writeToFile("README.md", generateMarkdown(response));
+        });
 }
 
 // Function call to initialize app

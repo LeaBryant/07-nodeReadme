@@ -4,7 +4,7 @@ function renderLicenseBadge(license) {
   if (license === "n/a"){
     return ""
   }
-  return badge= "![![GitHub](https://badgen.net/badge/icon/github?icon=github&label)](https://github.com)";
+  return "![license Badge](https://img.shields.io/badge/license-"+`${license}`+"-blueviolet.svg)"
 }
 
 // TODO: Create a function that returns the license link
@@ -14,7 +14,7 @@ function renderLicenseLink(license) {
   return ""
  }
 }
-return "[lincense]{#license}"
+return "- [License](#license)"
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
@@ -22,40 +22,49 @@ function renderLicenseSection(license) {
   if (license === "n/a"){
    return ""
   }
-  return "[lincense]{#license}"
+  return `## License
  }
 
 // TODO: Create a function to generate markdown for README
 // text or template literals are what they call the backticks
 function generateMarkdown(data) {
-  return `# ${data.title}
+  return #${data.title}
+  ${renderLicenseBadge(data.license)}
 
-  # Description
+  ## Description
   ${data.description}
-  # Table of Contents
-    * [Installation](#installation)
-    * [Usage](#usage)
-    * [License](#license)
-    * [Contributions](#contributions)
-    * [Tests](#tests)
-    * [Questions](#questions)
 
-  # Installation
-    - ${data.instal}
-  # Usage
-    - ${data.usage}
-  # Screenshot
-    - ${data.screenshot}
-  # License
-    - ${data.license}
-  # Contributions
-    - ${data.contributions}
-  # Tests
-    - ${data.tests}
-  # Github
-    - ${data.username}
-    - email ${data.email}
+  ## Table of Contents
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - ${renderLicenseLink(data.license)}
+    - [Contributing](#contributing)
+    - [Tests](#tests)
+    - [Questions](#questions)
+    - [Visuals](#visuals)
+
+  ## Installation
+    ${data.installation}
   
+  ## Visuals
+
+  ### Deployed
+  Link to deployed application:[${data.title}](${data.deployed})
+
+  ## Usage
+    ${data.usage}
+    ${renderLicenseSection(data.license)}
+    
+  ## Contributing
+    ${data.contribution}
+    
+  ## Tests
+    ${data.testing}
+  
+  ## Questions
+  
+Checkout my other projects on github: [${data.username}](https://www.github.com/${data.username})
+
 `;
 }
 
