@@ -1,7 +1,7 @@
-# 7
+# Readme file!
   ![license Badge](https://img.shields.io/badge/license-"+`${license}`+"-blueviolet.svg)
 ## Description
-
+Create a new readme!
 undefined
 undefined
 undefined
@@ -15,9 +15,9 @@ undefined
 - [Questions](#questions)
 - [Visuals](#visuals)
 ## Installation
-
+npm i 
 ## Usage
-
+node index.js
 ## License
   
   This project uses the undefined license. 
@@ -25,10 +25,10 @@ undefined
 ## Contributing
 
 ## Tests
-p
+run and create a readme in the command line
 ## Questions
-Please feel free to explore my other projects on github: [](https://www.github.com/)
-Contact me at: 
+Please feel free to explore my other projects on github: [LeaBryant](https://www.github.com/LeaBryant)
+Contact me at: ldbryant3220@gmail.com
 ## Visuals
 Link to deployed application:
-[7]()
+[Readme file!](..)
